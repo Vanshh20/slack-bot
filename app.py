@@ -37,7 +37,6 @@ scheduler = BackgroundScheduler(timezone=pytz.timezone('Asia/Kolkata'))
 scheduler.start()
 
 def verify_request():
-    # Bypassing Slack authentication verification for now
     return True
 
 def get_user_metrics(session, team_id, limit=5, timeframe='1 day'):
@@ -100,7 +99,7 @@ def format_slack_message(metrics, header="Top Active Users", show_bottom=False, 
     return blocks, text
 
 def send_weekly_report():
-    from sqlalchemy import text  # Explicit import to avoid UnboundLocalError
+    from sqlalchemy import text 
     logger.info("Running scheduled weekly report")
     session = Session()
     try:
@@ -129,7 +128,7 @@ def send_weekly_report():
         session.close()
 
 def send_monthly_report():
-    from sqlalchemy import text  # Explicit import to avoid UnboundLocalError
+    from sqlalchemy import text  
     logger.info("Running scheduled monthly report")
     session = Session()
     try:
@@ -158,7 +157,7 @@ def send_monthly_report():
         session.close()
 
 def send_yearly_report():
-    from sqlalchemy import text  # Explicit import to avoid UnboundLocalError
+    from sqlalchemy import text 
     logger.info("Running scheduled yearly report")
     session = Session()
     try:
@@ -171,7 +170,6 @@ def send_yearly_report():
             ).fetchone()
             channel_id = report_channel[0] if report_channel else "#general"
 
-            # Fetch all users (no limit)
             metrics = get_user_metrics(session, team_id, limit=999999, timeframe='365 days')
             blocks, text = format_slack_message(
                 metrics,
