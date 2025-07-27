@@ -1,7 +1,7 @@
 flask==3.0.3
-     slack_sdk==3.31.0
-     sqlalchemy==2.0.35
-     psycopg2-binary==2.9.9
-     python-dotenv==1.0.1
-     gunicorn==22.0.0
-     apscheduler==3.10.4
+slack_sdk==3.31.0
+sqlalchemy==2.0.35
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
+gunicorn==22.0.0
+apscheduler==3.10.4
